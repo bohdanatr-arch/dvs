@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>New Year — Mystery Pack</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #060608;
+      color: #ffffff;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      height: 100dvh;
+      width: 100vw;
+    }
+
+    /* Festive New Year winter night background */
+    .bf-bg {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(250, 204, 21, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 82% 78%, rgba(220, 38, 38, 0.22) 0%, transparent 52%),
+        radial-gradient(circle at 16% 72%, rgba(16, 185, 129, 0.16) 0%, transparent 48%),
+        linear-gradient(180deg, #050b14 0%, #0a1626 50%, #060d17 100%);
+    }
+
+    /* 3D background toggle pills */
+    .bg-toggle-pill {
+      background: linear-gradient(145deg, #24242b, #121216);
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.85),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .bg-toggle-knob-gold {
+      background: radial-gradient(circle at 35% 35%, #fde047, #eab308 55%, #a16207 100%);
+      box-shadow:
+        0 0 24px rgba(234, 179, 8, 0.55),
+        inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    }
+
+    .bg-toggle-knob-red {
+      background: radial-gradient(circle at 35% 35%, #f87171, #dc2626 55%, #7f1d1d 100%);
+      box-shadow:
+        0 0 24px rgba(220, 38, 38, 0.55),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    }
+
+    .bg-toggle-knob-green {
+      background: radial-gradient(circle at 35% 35%, #6ee7b7, #10b981 55%, #065f46 100%);
+      box-shadow:
+        0 0 24px rgba(16, 185, 129, 0.55),
+        inset 0 2px 4px rgba(255, 255, 255, 0.55);
+    }
+
+    @keyframes floatSlow1 {
+      0%, 100% { transform: translateY(0px) rotate(-26deg); }
+      50% { transform: translateY(-14px) rotate(-23deg); }
+    }
+
+    @keyframes floatSlow2 {
+      0%, 100% { transform: translateY(0px) rotate(22deg); }
+      50% { transform: translateY(16px) rotate(25deg); }
+    }
+
+    @keyframes floatSlow3 {
+      0%, 100% { transform: translateY(0px) rotate(-18deg); }
+      50% { transform: translateY(-12px) rotate(-21deg); }
+    }
+
+    .animate-float-1 { animation: floatSlow1 7s ease-in-out infinite; }
+    .animate-float-2 { animation: floatSlow2 8.5s ease-in-out infinite; }
+    .animate-float-3 { animation: floatSlow3 9s ease-in-out infinite; }
+
+    /* Glossy festive crimson & champagne gold metallic foil surface */
+    .foil-surface {
+      background:
+        linear-gradient(125deg,
+          rgba(255, 255, 255, 0.04) 0%,
+          rgba(255, 255, 255, 0.18) 22%,
+          rgba(255, 255, 255, 0.02) 38%,
+          rgba(250, 204, 21, 0.22) 52%,
+          rgba(255, 255, 255, 0.03) 68%,
+          rgba(255, 255, 255, 0.15) 85%,
+          rgba(255, 255, 255, 0.04) 100%
+        ),
+        radial-gradient(circle at 30% 25%, #991b1b 0%, #58111a 55%, #2b0910 100%);
+      box-shadow:
+        0 30px 60px -15px rgba(0, 0, 0, 0.9),
+        0 0 45px rgba(239, 68, 68, 0.28),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.85);
+    }
+
+    /* Crimped top and bottom edges */
+    .foil-crimp-top {
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.12) 0px,
+        rgba(255, 255, 255, 0.12) 2px,
+        rgba(0, 0, 0, 0.45) 2px,
+        rgba(0, 0, 0, 0.45) 5px
+      );
+      border-bottom: 1px solid rgba(234, 179, 8, 0.35);
+    }
+
+    .foil-crimp-bottom {
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.12) 0px,
+        rgba(255, 255, 255, 0.12) 2px,
+        rgba(0, 0, 0, 0.45) 2px,
+        rgba(0, 0, 0, 0.45) 5px
+      );
+      border-top: 1px solid rgba(234, 179, 8, 0.35);
+    }
+
+    /* Animated specular sheen */
+    @keyframes foilSheen {
+      0% { transform: translateX(-140%) skewX(-20deg); }
+      45%, 100% { transform: translateX(240%) skewX(-20deg); }
+    }
+
+    .foil-sheen-bar {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 35%,
+        rgba(253, 224, 71, 0.28) 50%,
+        rgba(255, 255, 255, 0.08) 65%,
+        transparent 100%
+      );
+      animation: foilSheen 4.2s infinite ease-in-out;
+    }
+
+    /* Shake animation before tearing */
+    @keyframes packShake {
+      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1.04); }
+      15% { transform: translate(-6px, -3px) rotate(-2deg) scale(1.05); }
+      30% { transform: translate(6px, 2px) rotate(2deg) scale(1.06); }
+      45% { transform: translate(-5px, 3px) rotate(-1.5deg) scale(1.06); }
+      60% { transform: translate(5px, -2px) rotate(1.5deg) scale(1.07); }
+      75% { transform: translate(-4px, -2px) rotate(-1deg) scale(1.07); }
+      90% { transform: translate(4px, 2px) rotate(1deg) scale(1.08); }
+    }
+
+    .animate-pack-shake {
+      animation: packShake 0.35s ease-in-out;
+    }
+
+    /* Jagged tear edges */
+    .tear-top-clip {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% 88%,
+        94% 96%, 88% 86%, 82% 97%, 75% 87%, 69% 96%, 62% 86%, 56% 98%,
+        50% 87%, 44% 97%, 37% 86%, 31% 96%, 25% 87%, 18% 97%, 12% 86%, 6% 95%, 0% 87%
+      );
+    }
+
+    .tear-bottom-clip {
+      clip-path: polygon(
+        0% 4%, 6% 12%, 12% 3%, 18% 14%, 25% 4%, 31% 13%, 37% 3%, 44% 14%,
+        50% 4%, 56% 15%, 62% 3%, 69% 13%, 75% 4%, 82% 14%, 88% 3%, 94% 13%, 100% 5%,
+        100% 100%, 0% 100%
+      );
+    }
+
+    /* Torn halves flying away */
+    .pack-top-flying {
+      transform: translateY(-135%) rotate(-8deg) scale(0.95);
+      opacity: 0;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease-out;
+    }
+
+    .pack-bottom-dropping {
+      transform: translateY(130%) rotate(4deg) scale(0.96);
+      opacity: 0;
+      transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease-out;
+    }
+
+    /* 3D card flip */
+    .perspective-1000 {
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+
+    .card-flipped .card-inner {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 1.25rem;
+    }
+
+    .card-front {
+      transform: rotateY(0deg);
+      -webkit-transform: rotateY(0deg);
+      transition: opacity 0.12s ease 0.18s, visibility 0s linear 0.24s;
+    }
+
+    .card-flipped .card-front {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    /* Question mark subtle glow (without 3D filter conflicts) */
+    @keyframes pulseQuestion {
+      0%, 100% { box-shadow: 0 0 12px rgba(250, 204, 21, 0.25); }
+      50% { box-shadow: 0 0 22px rgba(250, 204, 21, 0.55); }
+    }
+
+    .animate-question {
+      animation: pulseQuestion 2.4s ease-in-out infinite;
+    }
+
+    /* Staggered card entrance */
+    @keyframes cardPopIn {
+      0% { opacity: 0; transform: scale(0.82) translateY(18px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .card-enter-1 { animation: cardPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+    .card-enter-2 { animation: cardPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both; }
+    .card-enter-3 { animation: cardPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both; }
+
+    /* Tear light burst */
+    @keyframes flashBurst {
+      0% { opacity: 0.95; transform: scale(0.4); }
+      100% { opacity: 0; transform: scale(2.4); }
+    }
+
+    .animate-flash-burst {
+      animation: flashBurst 0.55s ease-out forwards;
+    }
+
+    /* Custom scrollbar for Prizes modal */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(234, 179, 8, 0.4);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bf-bg flex items-center justify-center relative select-none">
+
+  <!-- Background 3D floating switches -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="bg-toggle-pill animate-float-1 absolute -top-6 -left-10 sm:left-[12%] w-60 h-28 rounded-full flex items-center justify-between px-6 blur-[1.5px] opacity-75">
+      <span class="text-white/85 font-black text-3xl tracking-tighter">2027</span>
+      <div class="bg-toggle-knob-gold w-20 h-20 rounded-full"></div>
+    </div>
+
+    <div class="bg-toggle-pill animate-float-2 absolute top-[28%] -right-14 sm:right-[10%] w-64 h-32 rounded-full flex items-center justify-between px-7 blur-[1px] opacity-80">
+      <div class="bg-toggle-knob-red w-[5.5rem] h-[5.5rem] rounded-full"></div>
+      <span class="text-white/85 font-black text-3xl tracking-tighter">GIFT</span>
+    </div>
+
+    <div class="bg-toggle-pill animate-float-3 absolute bottom-[8%] -left-12 sm:left-[14%] w-64 h-32 rounded-full flex items-center justify-between px-7 blur-[1.5px] opacity-75">
+      <span class="text-white/85 font-black text-3xl tracking-tighter">XMAS</span>
+      <div class="bg-toggle-knob-green w-[5.5rem] h-[5.5rem] rounded-full"></div>
+    </div>
+  </div>
+
+  <!-- Particle FX & Snowfall Canvas -->
+  <canvas id="fxCanvas" class="fixed inset-0 pointer-events-none z-30"></canvas>
+
+  <!-- Main Mobile Container -->
+  <main class="relative z-10 w-full max-w-[430px] h-full max-h-[900px] flex flex-col justify-between px-5 py-4 sm:py-6">
+
+    <!-- Top Navigation Bar -->
+    <header class="flex items-center justify-between gap-2 z-20">
+      <div class="flex items-center gap-2 bg-white/[0.07] backdrop-blur-md border border-yellow-400/35 px-3.5 py-2 rounded-full shadow-lg">
+        <svg class="w-3.5 h-3.5 text-sky-300 animate-spin" style="animation-duration: 12s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" />
+        </svg>
+        <span class="text-[11px] sm:text-xs font-extrabold tracking-widest uppercase text-yellow-300">
+          New Year
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          id="soundToggleBtn"
+          type="button"
+          aria-label="Toggle sound"
+          class="w-10 h-10 rounded-full bg-white/[0.06] hover:bg-white/[0.12] active:scale-95 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/85 transition"
+        >
+          <svg id="soundOnIcon" class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+          <svg id="soundOffIcon" class="w-5 h-5 text-white/40 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+          </svg>
+        </button>
+
+        <button
+          id="openLootBtn"
+          type="button"
+          class="flex items-center gap-2 bg-white/[0.07] hover:bg-white/[0.14] active:scale-95 backdrop-blur-md border border-white/15 px-3.5 py-2 rounded-full text-xs font-bold text-white transition shadow-lg"
+        >
+          <svg class="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          <span>Prizes</span>
+          <span id="lootCountBadge" class="bg-yellow-400 text-black font-black text-[11px] px-1.5 py-0.2 rounded-full min-w-[20px] text-center">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Center Interactive Stage -->
+    <section class="relative flex-1 flex items-center justify-center my-2">
+
+      <!-- State 1: Closed Mystery Pack -->
+      <div id="closedPackStage" class="w-full h-full flex items-center justify-center">
+        <div
+          id="mysteryPackWrapper"
+          class="relative w-[245px] sm:w-[270px] h-[335px] sm:h-[365px] cursor-pointer transition-transform duration-200 ease-out"
+        >
+          <div id="wholePackVisual" class="relative w-full h-full rounded-2xl foil-surface border border-yellow-400/45 overflow-hidden flex flex-col justify-between">
+            <div class="foil-sheen-bar absolute inset-0 w-1/2 h-full pointer-events-none"></div>
+
+            <!-- Decorative corner snowflakes -->
+            <img
+              src="https://i.postimg.cc/4NtCzW6h/Znimok-ekrana-2026-11-12-o-23-30-37.png"
+              alt="Snowflake"
+              referrerpolicy="no-referrer"
+              onerror="this.onerror=null;this.src='https://placehold.co/64x64/58111a/ffffff?text=*';"
+              class="absolute top-9 right-4 w-11 h-11 object-contain opacity-85 drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)] pointer-events-none select-none"
+            />
+            <img
+              src="https://i.postimg.cc/4NtCzW6h/Znimok-ekrana-2026-11-12-o-23-30-37.png"
+              alt="Snowflake"
+              referrerpolicy="no-referrer"
+              onerror="this.onerror=null;this.src='https://placehold.co/64x64/58111a/fde047?text=*';"
+              class="absolute bottom-9 left-4 w-12 h-12 object-contain opacity-85 drop-shadow-[0_2px_8px_rgba(250,204,21,0.25)] pointer-events-none select-none"
+            />
+
+            <!-- Top crimp -->
+            <div class="foil-crimp-top h-6 w-full shrink-0"></div>
+
+            <!-- Dashed tear line -->
+            <div class="relative w-full px-4 pt-2 flex items-center">
+              <div class="w-full border-b border-dashed border-yellow-300/50"></div>
+            </div>
+
+            <!-- Center emblem & title -->
+            <div class="flex-1 flex flex-col items-center justify-center px-5 text-center relative z-10">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-200 via-yellow-400 to-amber-600 p-[1.5px] shadow-[0_0_30px_rgba(250,204,21,0.45)] mb-4">
+                <div class="w-full h-full rounded-[14px] bg-[#24080e] flex items-center justify-center">
+                  <span class="text-3xl font-black bg-gradient-to-b from-yellow-100 to-yellow-400 bg-clip-text text-transparent">?</span>
+                </div>
+              </div>
+
+              <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-600/95 border border-yellow-300/35 text-white text-[10px] font-black tracking-widest uppercase mb-2 shadow">
+                New Year
+              </span>
+
+              <h2 class="text-2xl sm:text-[26px] font-black tracking-tight leading-none text-white uppercase">
+                Mystery
+                <span class="block bg-gradient-to-r from-yellow-100 via-yellow-300 to-amber-400 bg-clip-text text-transparent mt-0.5">
+                  Pack
+                </span>
+              </h2>
+            </div>
+
+            <!-- Bottom crimp -->
+            <div class="foil-crimp-bottom h-6 w-full shrink-0"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- State 2: Opened Pack & 3 Question Cards -->
+      <div id="openedStage" class="hidden w-full h-full flex-col items-center justify-center relative">
+
+        <!-- Vertical stack of 3 cards -->
+        <div id="cardsStack" class="w-full max-w-[240px] sm:max-w-[260px] flex flex-col gap-3 z-10"></div>
+
+        <!-- Torn foil halves overlay -->
+        <div id="tornOverlay" class="pointer-events-none absolute inset-0 flex items-center justify-center z-20">
+          <div class="relative w-[245px] sm:w-[270px] h-[335px] sm:h-[365px]">
+            <div id="tearFlash" class="hidden absolute top-[18%] left-1/2 -translate-x-1/2 w-48 h-16 rounded-full bg-yellow-300 blur-xl"></div>
+
+            <div id="tornTopHalf" class="tear-top-clip absolute top-0 left-0 w-full h-[24%] foil-surface border-t border-x border-yellow-400/45 rounded-t-2xl overflow-hidden flex flex-col">
+              <div class="foil-crimp-top h-6 w-full"></div>
+              <div class="flex-1 flex items-center justify-center">
+                <span class="text-[10px] font-black tracking-[0.2em] text-yellow-200/90 uppercase">New Year</span>
+              </div>
+            </div>
+
+            <div id="tornBottomHalf" class="tear-bottom-clip absolute bottom-0 left-0 w-full h-[80%] foil-surface border-b border-x border-yellow-400/45 rounded-b-2xl overflow-hidden flex flex-col justify-between pt-6">
+              <div class="flex-1 flex flex-col items-center justify-center px-5 text-center">
+                <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-600/95 border border-yellow-300/35 text-white text-[10px] font-black tracking-widest uppercase mb-1.5">
+                  New Year
+                </span>
+                <h2 class="text-2xl font-black tracking-tight leading-none text-white uppercase">
+                  Mystery
+                  <span class="block bg-gradient-to-r from-yellow-100 via-yellow-300 to-amber-400 bg-clip-text text-transparent mt-0.5">
+                    Pack
+                  </span>
+                </h2>
+              </div>
+              <div class="foil-crimp-bottom h-6 w-full"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Action Bar (shown after picking a card) -->
+    <footer id="bottomControls" class="h-14 flex items-center justify-center z-20">
+      <div id="afterTearActions" class="hidden w-full flex items-center justify-center gap-3">
+        <button
+          id="newPackBtn"
+          type="button"
+          class="flex-1 max-w-[220px] py-3 px-5 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:brightness-105 active:scale-95 text-black text-xs sm:text-sm font-black uppercase tracking-wide shadow-[0_10px_25px_rgba(234,179,8,0.35)] transition"
+        >
+          Next Pack
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Prizes Modal -->
+  <div id="lootModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="w-full max-w-sm bg-[#0b1320] border border-yellow-400/35 rounded-3xl p-5 shadow-2xl flex flex-col max-h-[80dvh]">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="text-lg font-black text-white">Prizes</h3>
+        <button
+          id="closeLootModalBtn"
+          type="button"
+          class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div id="lootListContainer" class="flex-1 overflow-y-auto py-4 space-y-2.5"></div>
+
+      <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+        <button
+          id="clearLootBtn"
+          type="button"
+          class="text-xs font-semibold text-white/45 hover:text-red-400 transition px-2 py-1.5"
+        >
+          Clear
+        </button>
+        <button
+          id="closeLootModalBottomBtn"
+          type="button"
+          class="px-5 py-2.5 rounded-xl bg-yellow-400 text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-105 transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Web Audio API sound effects synthesizer
+     */
+    class SoundEffects {
+      constructor() {
+        this.enabled = true;
+        this.ctx = null;
+      }
+
+      init() {
+        try {
+          if (!this.ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) {
+              this.ctx = new AudioCtx();
+            }
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+        } catch (err) {
+          console.warn('Web Audio API unavailable:', err);
+        }
+      }
+
+      playFoilRip() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const duration = 0.42;
+          const bufferSize = this.ctx.sampleRate * duration;
+          const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+
+          for (let i = 0; i < bufferSize; i++) {
+            const env = Math.sin((i / bufferSize) * Math.PI);
+            const crackle = Math.random() > 0.72 ? 1.8 : 0.4;
+            data[i] = (Math.random() * 2 - 1) * env * crackle * 0.45;
+          }
+
+          const noise = this.ctx.createBufferSource();
+          noise.buffer = buffer;
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(1800, this.ctx.currentTime);
+          filter.frequency.exponentialRampToValueAtTime(4200, this.ctx.currentTime + duration);
+          filter.Q.value = 1.4;
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.55, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx.destination);
+          noise.start();
+        } catch (err) {
+          console.warn('Foil rip sound error:', err);
+        }
+      }
+
+      playCardFlip() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(260, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(620, this.ctx.currentTime + 0.14);
+
+          gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.15);
+        } catch (err) {
+          console.warn('Card flip sound error:', err);
+        }
+      }
+
+      playWin(isLegendary = false) {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const notes = isLegendary ? [659.25, 880, 1046.5, 1318.5] : [587.33, 783.99, 987.77];
+          notes.forEach((freq, idx) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            const startTime = this.ctx.currentTime + idx * 0.065;
+            osc.frequency.setValueAtTime(freq, startTime);
+
+            gain.gain.setValueAtTime(0.16, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.55);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(startTime);
+            osc.stop(startTime + 0.55);
+          });
+        } catch (err) {
+          console.warn('Win sound error:', err);
+        }
+      }
+
+      playEmpty() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(75, this.ctx.currentTime + 0.28);
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 380;
+
+          gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.3);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.3);
+        } catch (err) {
+          console.warn('Empty sound error:', err);
+        }
+      }
+    }
+
+    const sfx = new SoundEffects();
+
+    /**
+     * Prize Pool: Empty Pack + custom iPhone and AirPods images
+     */
+    const PRIZE_POOL = [
+      {
+        id: 'empty',
+        name: 'Empty Pack',
+        rarity: 'empty',
+        badge: 'Empty',
+        imageUrl: null,
+        svg: `
+          <svg viewBox="0 0 80 80" class="w-12 h-12 opacity-60">
+            <rect x="18" y="24" width="44" height="36" rx="8" fill="none" stroke="#9ca3af" stroke-width="3" stroke-dasharray="5 4"/>
+            <path d="M28 40h24" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        `
+      },
+      {
+        id: 'airpods',
+        name: 'Apple AirPods Max',
+        rarity: 'rare',
+        badge: 'Prize',
+        imageUrl: 'https://i.postimg.cc/fy2vdfVn/Znimok-ekrana-2026-11-12-o-23-18-08.png',
+        svg: `
+          <img
+            src="https://i.postimg.cc/fy2vdfVn/Znimok-ekrana-2026-11-12-o-23-18-08.png"
+            alt="Apple AirPods Max"
+            referrerpolicy="no-referrer"
+            onerror="this.onerror=null;this.src='https://placehold.co/140x140/18181b/38bdf8?text=AirPods';"
+            class="w-full h-full object-contain rounded-lg"
+          />
+        `
+      },
+      {
+        id: 'iphone',
+        name: 'Apple iPhone 16 Pro Max',
+        rarity: 'legendary',
+        badge: 'Jackpot',
+        imageUrl: 'https://i.postimg.cc/NjLzd5tJ/1.png',
+        svg: `
+          <img
+            src="https://i.postimg.cc/NjLzd5tJ/1.png"
+            alt="Apple iPhone 16 Pro Max"
+            referrerpolicy="no-referrer"
+            onerror="this.onerror=null;this.src='https://placehold.co/140x140/18181b/facc15?text=iPhone';"
+            class="w-full h-full object-contain rounded-lg"
+          />
+        `
+      }
+    ];
+
+    /**
+     * Particle effects & ambient snowfall system
+     */
+    class ParticleFX {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.snowflakes = [];
+        this.resize();
+        this.initSnow();
+        window.addEventListener('resize', () => this.resize());
+        this.loop = this.loop.bind(this);
+        requestAnimationFrame(this.loop);
+      }
+
+      initSnow() {
+        this.snowflakes = Array.from({ length: 42 }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: 1.2 + Math.random() * 2.4,
+          vy: 0.45 + Math.random() * 0.9,
+          drift: Math.random() * Math.PI * 2,
+          alpha: 0.25 + Math.random() * 0.55
+        }));
+      }
+
+      resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        this.canvas.width = window.innerWidth * dpr;
+        this.canvas.height = window.innerHeight * dpr;
+        this.canvas.style.width = `${window.innerWidth}px`;
+        this.canvas.style.height = `${window.innerHeight}px`;
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      burst(x, y, count = 45, palette = ['#fde047', '#ef4444', '#22c55e', '#ffffff', '#38bdf8']) {
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2.5 + Math.random() * 7.5;
+          this.particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2,
+            size: 3 + Math.random() * 5,
+            color: palette[Math.floor(Math.random() * palette.length)],
+            alpha: 1,
+            decay: 0.015 + Math.random() * 0.02,
+            rotation: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 12,
+            isRect: Math.random() > 0.45
+          });
+        }
+      }
+
+      loop() {
+        this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        // Ambient falling snow
+        for (let i = 0; i < this.snowflakes.length; i++) {
+          const s = this.snowflakes[i];
+          s.y += s.vy;
+          s.drift += 0.018;
+          s.x += Math.sin(s.drift) * 0.45;
+
+          if (s.y > window.innerHeight + 6) {
+            s.y = -6;
+            s.x = Math.random() * window.innerWidth;
+          }
+
+          this.ctx.save();
+          this.ctx.globalAlpha = s.alpha;
+          this.ctx.fillStyle = '#ffffff';
+          this.ctx.beginPath();
+          this.ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          this.ctx.fill();
+          this.ctx.restore();
+        }
+
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          const p = this.particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.22;
+          p.vx *= 0.98;
+          p.alpha -= p.decay;
+          p.rotation += p.rotSpeed;
+
+          if (p.alpha <= 0) {
+            this.particles.splice(i, 1);
+            continue;
+          }
+
+          this.ctx.save();
+          this.ctx.globalAlpha = Math.max(0, p.alpha);
+          this.ctx.translate(p.x, p.y);
+          this.ctx.rotate((p.rotation * Math.PI) / 180);
+          this.ctx.fillStyle = p.color;
+
+          if (p.isRect) {
+            this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          } else {
+            this.ctx.beginPath();
+            this.ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
+          this.ctx.restore();
+        }
+
+        requestAnimationFrame(this.loop);
+      }
+    }
+
+    // Application state
+    const state = {
+      isOpening: false,
+      isOpened: false,
+      hasPicked: false,
+      currentCards: [],
+      wonLoot: []
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const fx = new ParticleFX(document.getElementById('fxCanvas'));
+
+      const closedPackStage = document.getElementById('closedPackStage');
+      const mysteryPackWrapper = document.getElementById('mysteryPackWrapper');
+      const wholePackVisual = document.getElementById('wholePackVisual');
+
+      const openedStage = document.getElementById('openedStage');
+      const cardsStack = document.getElementById('cardsStack');
+      const tornOverlay = document.getElementById('tornOverlay');
+      const tearFlash = document.getElementById('tearFlash');
+      const tornTopHalf = document.getElementById('tornTopHalf');
+      const tornBottomHalf = document.getElementById('tornBottomHalf');
+
+      const afterTearActions = document.getElementById('afterTearActions');
+      const newPackBtn = document.getElementById('newPackBtn');
+
+      const soundToggleBtn = document.getElementById('soundToggleBtn');
+      const soundOnIcon = document.getElementById('soundOnIcon');
+      const soundOffIcon = document.getElementById('soundOffIcon');
+
+      const openLootBtn = document.getElementById('openLootBtn');
+      const lootCountBadge = document.getElementById('lootCountBadge');
+      const lootModal = document.getElementById('lootModal');
+      const closeLootModalBtn = document.getElementById('closeLootModalBtn');
+      const closeLootModalBottomBtn = document.getElementById('closeLootModalBottomBtn');
+      const clearLootBtn = document.getElementById('clearLootBtn');
+      const lootListContainer = document.getElementById('lootListContainer');
+
+      // Load saved prizes safely
+      function loadLoot() {
+        try {
+          const saved = localStorage.getItem('bf_mystery_loot_v1');
+          if (saved) {
+            state.wonLoot = JSON.parse(saved);
+          }
+        } catch (err) {
+          console.warn('Storage read error:', err);
+        }
+        lootCountBadge.textContent = String(state.wonLoot.length);
+      }
+
+      function saveLoot() {
+        try {
+          localStorage.setItem('bf_mystery_loot_v1', JSON.stringify(state.wonLoot));
+        } catch (err) {
+          console.warn('Storage write error:', err);
+        }
+        lootCountBadge.textContent = String(state.wonLoot.length);
+      }
+
+      loadLoot();
+
+      // Toggle audio
+      soundToggleBtn.addEventListener('click', () => {
+        sfx.enabled = !sfx.enabled;
+        if (sfx.enabled) {
+          soundOnIcon.classList.remove('hidden');
+          soundOffIcon.classList.add('hidden');
+          sfx.playCardFlip();
+        } else {
+          soundOnIcon.classList.add('hidden');
+          soundOffIcon.classList.remove('hidden');
+        }
+      });
+
+      // Card styling by rarity
+      function getCardTheme(rarity) {
+        if (rarity === 'legendary') {
+          return {
+            bg: 'bg-gradient-to-br from-[#2a220c] via-[#17140d] to-[#0c0b09]',
+            border: 'border-yellow-400/60',
+            badgeBg: 'bg-yellow-400 text-black'
+          };
+        }
+        if (rarity === 'rare') {
+          return {
+            bg: 'bg-gradient-to-br from-[#102233] via-[#111622] to-[#0b0d12]',
+            border: 'border-sky-400/50',
+            badgeBg: 'bg-sky-400 text-black'
+          };
+        }
+        return {
+          bg: 'bg-gradient-to-br from-[#1c1c22] via-[#131317] to-[#0c0c0f]',
+          border: 'border-white/15',
+          badgeBg: 'bg-white/15 text-white/75'
+        };
+      }
+
+      // Generate 3 shuffled cards (iPhone, AirPods Pro 2, Empty Pack)
+      function generatePackCards() {
+        const deck = [...PRIZE_POOL];
+        for (let i = deck.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        return deck;
+      }
+
+      /**
+       * Render 3 mystery cards with '?' fronts and large prize photos on the back
+       */
+      function renderCards(prizes) {
+        cardsStack.innerHTML = '';
+        state.hasPicked = false;
+
+        prizes.forEach((prize, index) => {
+          const theme = getCardTheme(prize.rarity);
+          const cardEl = document.createElement('div');
+          cardEl.className = `perspective-1000 h-[132px] sm:h-[144px] w-full cursor-pointer transition-all duration-300 card-enter-${index + 1}`;
+          cardEl.dataset.index = String(index);
+
+          const prizeVisualHtml = prize.imageUrl
+            ? `<div class="h-[82px] sm:h-[90px] w-full flex items-center justify-center mb-1.5">
+                 <img
+                   src="${prize.imageUrl}"
+                   alt="${prize.name}"
+                   referrerpolicy="no-referrer"
+                   onerror="this.onerror=null;this.src='https://placehold.co/160x160/18181b/facc15?text=Prize';"
+                   class="max-h-full max-w-[145px] object-contain rounded-xl drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)] pointer-events-none"
+                 />
+               </div>`
+            : `<div class="h-[60px] flex items-center justify-center mb-1">
+                 ${prize.svg}
+               </div>`;
+
+          cardEl.innerHTML = `
+            <div class="card-inner">
+              <!-- Front face with '?' -->
+              <div class="card-face card-front foil-surface border border-yellow-500/40 flex items-center justify-center shadow-xl overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-tr from-yellow-500/10 via-transparent to-white/10 pointer-events-none"></div>
+                <div class="w-14 h-14 rounded-2xl bg-black/55 border border-yellow-400/40 flex items-center justify-center animate-question">
+                  <span class="text-4xl font-black bg-gradient-to-b from-yellow-200 to-yellow-500 bg-clip-text text-transparent">?</span>
+                </div>
+              </div>
+
+              <!-- Back face with prize image -->
+              <div class="card-face card-back ${theme.bg} border ${theme.border} px-3 py-2.5 flex flex-col items-center justify-center text-center shadow-xl overflow-hidden">
+                <span class="missed-tag hidden absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/75 border border-white/15 text-[9px] font-bold uppercase tracking-wider text-white/60">
+                  Missed
+                </span>
+                ${prizeVisualHtml}
+                <h3 class="text-xs sm:text-[13px] font-black text-white leading-tight truncate max-w-full">
+                  ${prize.name}
+                </h3>
+              </div>
+            </div>
+          `;
+
+          cardEl.addEventListener('click', () => handleCardPick(index));
+          cardsStack.appendChild(cardEl);
+        });
+      }
+
+      /**
+       * Handle single card selection and auto-reveal the two remaining missed slots
+       */
+      function handleCardPick(chosenIndex) {
+        if (state.hasPicked || !state.isOpened) return;
+        state.hasPicked = true;
+
+        const allCardEls = Array.from(cardsStack.children);
+        const chosenCardEl = allCardEls[chosenIndex];
+        const chosenPrize = state.currentCards[chosenIndex];
+
+        allCardEls.forEach((el) => {
+          el.classList.remove('cursor-pointer', 'card-enter-1', 'card-enter-2', 'card-enter-3');
+        });
+
+        chosenCardEl.classList.add('card-flipped', 'scale-[1.03]', 'z-10');
+        const chosenBack = chosenCardEl.querySelector('.card-back');
+        if (chosenBack) {
+          chosenBack.classList.add('ring-2', 'ring-yellow-400');
+        }
+
+        sfx.playCardFlip();
+
+        const rect = chosenCardEl.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        setTimeout(() => {
+          if (chosenPrize.id === 'empty') {
+            sfx.playEmpty();
+          } else {
+            const isLegendary = chosenPrize.rarity === 'legendary';
+            sfx.playWin(isLegendary);
+            fx.burst(
+              centerX,
+              centerY,
+              isLegendary ? 55 : 28,
+              isLegendary ? ['#fde047', '#facc15', '#ffffff', '#f59e0b'] : ['#38bdf8', '#fde047', '#ffffff']
+            );
+
+            state.wonLoot.unshift({
+              id: chosenPrize.id,
+              name: chosenPrize.name,
+              rarity: chosenPrize.rarity,
+              badge: chosenPrize.badge,
+              svg: chosenPrize.svg,
+              time: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+            });
+            saveLoot();
+          }
+        }, 160);
+
+        // Automatically flip the other two missed cards
+        setTimeout(() => {
+          sfx.playCardFlip();
+          allCardEls.forEach((el, idx) => {
+            if (idx !== chosenIndex) {
+              el.classList.add('card-flipped', 'opacity-50', 'grayscale-[45%]', 'scale-[0.95]');
+              const missedTag = el.querySelector('.missed-tag');
+              if (missedTag) {
+                missedTag.classList.remove('hidden');
+              }
+            }
+          });
+        }, 650);
+
+        setTimeout(() => {
+          afterTearActions.classList.remove('hidden');
+        }, 1000);
+      }
+
+      /**
+       * Foil pack tear-open animation
+       */
+      function tearOpenPack() {
+        if (state.isOpening || state.isOpened) return;
+        state.isOpening = true;
+        state.hasPicked = false;
+
+        if (navigator.vibrate) {
+          navigator.vibrate([30, 40, 60]);
+        }
+
+        mysteryPackWrapper.style.transform = '';
+        wholePackVisual.classList.add('animate-pack-shake');
+
+        setTimeout(() => {
+          sfx.playFoilRip();
+
+          state.currentCards = generatePackCards();
+          renderCards(state.currentCards);
+
+          tornOverlay.classList.remove('hidden');
+          tornTopHalf.classList.remove('pack-top-flying');
+          tornBottomHalf.classList.remove('pack-bottom-dropping');
+          tearFlash.classList.remove('hidden', 'animate-flash-burst');
+
+          closedPackStage.classList.add('hidden');
+          openedStage.classList.remove('hidden');
+          openedStage.classList.add('flex');
+
+          requestAnimationFrame(() => {
+            tearFlash.classList.add('animate-flash-burst');
+            tornTopHalf.classList.add('pack-top-flying');
+            tornBottomHalf.classList.add('pack-bottom-dropping');
+          });
+
+          const rect = openedStage.getBoundingClientRect();
+          fx.burst(rect.left + rect.width / 2, rect.top + rect.height * 0.35, 50);
+
+          afterTearActions.classList.add('hidden');
+
+          setTimeout(() => {
+            tornOverlay.classList.add('hidden');
+            state.isOpening = false;
+            state.isOpened = true;
+          }, 700);
+        }, 320);
+      }
+
+      // Interactive 3D tilt on desktop hover
+      mysteryPackWrapper.addEventListener('mousemove', (e) => {
+        if (state.isOpening || state.isOpened) return;
+        const rect = mysteryPackWrapper.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        mysteryPackWrapper.style.transform = `perspective(700px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg) scale(1.03)`;
+      });
+
+      mysteryPackWrapper.addEventListener('mouseleave', () => {
+        if (state.isOpening || state.isOpened) return;
+        mysteryPackWrapper.style.transform = '';
+      });
+
+      // Tap / click or swipe to open pack
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      mysteryPackWrapper.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      mysteryPackWrapper.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length > 0) {
+          const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+          const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+          if (dx > 18 || dy > 18) {
+            tearOpenPack();
+          }
+        }
+      }, { passive: true });
+
+      mysteryPackWrapper.addEventListener('click', tearOpenPack);
+
+      // Reset stage for next pack
+      newPackBtn.addEventListener('click', () => {
+        state.isOpening = false;
+        state.isOpened = false;
+        state.hasPicked = false;
+        state.currentCards = [];
+
+        wholePackVisual.classList.remove('animate-pack-shake');
+        openedStage.classList.add('hidden');
+        openedStage.classList.remove('flex');
+        afterTearActions.classList.add('hidden');
+        closedPackStage.classList.remove('hidden');
+      });
+
+      /**
+       * Render collected prizes inside modal
+       */
+      function renderLootModal() {
+        if (state.wonLoot.length === 0) {
+          lootListContainer.innerHTML = `
+            <div class="text-center py-10 px-4">
+              <p class="text-sm font-bold text-white/60">No prizes yet</p>
+            </div>
+          `;
+          return;
+        }
+
+        lootListContainer.innerHTML = state.wonLoot.map((item) => {
+          const theme = getCardTheme(item.rarity);
+          return `
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-white/[0.04] border border-white/10">
+              <div class="w-12 h-12 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden p-1">
+                ${item.svg}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <span class="px-1.5 py-0.2 rounded text-[9px] font-black uppercase ${theme.badgeBg}">${item.badge}</span>
+                  <span class="text-[10px] text-white/40 font-mono">${item.time || ''}</span>
+                </div>
+                <p class="text-xs font-extrabold text-white truncate mt-0.5">${item.name}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      openLootBtn.addEventListener('click', () => {
+        renderLootModal();
+        lootModal.classList.remove('hidden');
+        lootModal.classList.add('flex');
+      });
+
+      const closeModal = () => {
+        lootModal.classList.add('hidden');
+        lootModal.classList.remove('flex');
+      };
+
+      closeLootModalBtn.addEventListener('click', closeModal);
+      closeLootModalBottomBtn.addEventListener('click', closeModal);
+      lootModal.addEventListener('click', (e) => {
+        if (e.target === lootModal) closeModal();
+      });
+
+      clearLootBtn.addEventListener('click', () => {
+        state.wonLoot = [];
+        saveLoot();
+        renderLootModal();
+      });
+    });
+  </script>
+</body>
+</html>
